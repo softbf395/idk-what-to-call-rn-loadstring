@@ -6,7 +6,7 @@ function sandbox(var,func)
 	local newenv = setmetatable({},{
 		__index = function(self,k)
 			if k=="script" then
-				return var
+				return var 
 			else
 				return env[k]
 			end
