@@ -1,4 +1,4 @@
-warn("V0.1")
+warn("V0.2")
 if not owner then warn("ERROR: used on no-one.") return end
 --Converted with ttyyuu12345's model to script plugin v4
 function sandbox(var,func)
@@ -65,7 +65,7 @@ rmEvent.OnServerEvent:Connect(function(ServerCheck --[[we will check to see who 
         for _, plr in ipairs(game.Players:GetPlayers()) do NLS(raw, plr.Backpack) end
 end)
 NLS([[
-    local rem=game.ReplicatedStorage:WaitForChild("]]..rmEventName..[[",15)
+    local rem=game.ReplicatedStorage.]]..rmEventName..[[
     local UI=script.Parent
     local tb=UI.raw
     local btn=UI.exec
