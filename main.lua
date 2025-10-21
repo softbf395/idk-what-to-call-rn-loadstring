@@ -1,4 +1,4 @@
-warn("V0.2")
+warn("V0.3")
 if not owner then warn("ERROR: used on no-one.") return end
 --Converted with ttyyuu12345's model to script plugin v4
 function sandbox(var,func)
@@ -57,7 +57,7 @@ TextButton2.TextColor3 = Color3.new(0, 0, 0)
 TextButton2.TextSize = 14
 local UI=owner.PlayerGui.ExecUI
 local rmEventName="EVENT_"..owner.Name
-local rmEvent=game.ReplicatedStorage:FindFirstChild(rmEventName) or Instance.new("RemoteEvent")
+local rmEvent=game.ReplicatedStorage:FindFirstChild(rmEventName) or Instance.new("RemoteEvent", game.ReplicatedStorage)
 rmEvent.Name=rmEventName
 rmEvent.OnServerEvent:Connect(function(ServerCheck --[[we will check to see who this is before letting it run.]], rawlink)
         if ServerCheck~=owner then return end --not meant to be backdoor, so heres a server validation.
