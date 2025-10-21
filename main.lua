@@ -1,92 +1,71 @@
-local partsWithId = {}
-local awaitRef = {}
-local lstr=require(4689019964)
-local root = {
-	ID = 0;
-	Type = "ScreenGui";
-	Properties = {
-		ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
-	};
-	Children = {
-		{
-			ID = 1;
-			Type = "TextBox";
-			Properties = {
-				TextWrapped = true;
-				TextColor3 = Color3.new(1,1,1);
-				BorderColor3 = Color3.new(0,0,0);
-				Text = "";
-				TextScaled = true;
-				FontSize = Enum.FontSize.Size14;
-				TextSize = 14;
-				Font = Enum.Font.Arcade;
-				Name = "raw";
-				Size = UDim2.new(0.42968878149986267,0,0.10000000149011612,0);
-				BackgroundColor3 = Color3.new(0,0,0);
-				PlaceholderText = "raw link";
-				BorderSizePixel = 0;
-				TextWrap = true;
-			};
-			Children = {};
-		};
-		{
-			ID = 2;
-			Type = "TextButton";
-			Properties = {
-				FontSize = Enum.FontSize.Size14;
-				TextColor3 = Color3.new(0,0,0);
-				BorderColor3 = Color3.new(0,0,0);
-				Text = "Exec";
-				Font = Enum.Font.SourceSans;
-				Name = "exec";
-				Position = UDim2.new(0.16400335729122162,0,0.09870550036430359,0);
-				Size = UDim2.new(0.10000000149011612,0,0.10000000149011612,0);
-				TextSize = 14;
-				BorderSizePixel = 0;
-				BackgroundColor3 = Color3.new(1,1,1);
-			};
-			Children = {};
-		};
-	};
-};
-
-local function Scan(item, parent)
-	local obj = Instance.new(item.Type)
-	if (item.ID) then
-		local awaiting = awaitRef[item.ID]
-		if (awaiting) then
-			awaiting[1][awaiting[2]] = obj
-			awaitRef[item.ID] = nil
-		else
-			partsWithId[item.ID] = obj
-		end
-	end
-	for p,v in pairs(item.Properties) do
-		if (type(v) == "string") then
-			local id = tonumber(v:match("^_R:(%w+)_$"))
-			if (id) then
-				if (partsWithId[id]) then
-					v = partsWithId[id]
-				else
-					awaitRef[id] = {obj, p}
-					v = nil
-				end
-			end
-		end
-		obj[p] = v
-	end
-	for _,c in pairs(item.Children) do
-		Scan(c, obj)
-	end
-	obj.Parent = parent
-	return obj
-end
-
-local createUI = function(uip) return Scan(root, uip) end
 
 if not owner then warn("ERROR: used on no-one.") return end
-
-local UI=createUI(owner.PlayerGui)
+--Converted with ttyyuu12345's model to script plugin v4
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
+cors = {}
+ScreenGui0 = Instance.new("ScreenGui")
+TextBox1 = Instance.new("TextBox")
+TextButton2 = Instance.new("TextButton")
+ScreenGui0.Parent = owner.PlayerGui
+ScreenGui0.Name="ExecUI"
+ScreenGui0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+TextBox1.Name = "raw"
+TextBox1.Parent = ScreenGui0
+TextBox1.Size = UDim2.new(0.429688781, 0, 0.100000001, 0)
+TextBox1.BackgroundColor = BrickColor.new("Really black")
+TextBox1.BackgroundColor3 = Color3.new(0, 0, 0)
+TextBox1.BorderColor = BrickColor.new("Really black")
+TextBox1.BorderColor3 = Color3.new(0, 0, 0)
+TextBox1.BorderSizePixel = 0
+TextBox1.Font = Enum.Font.Arcade
+TextBox1.FontSize = Enum.FontSize.Size14
+TextBox1.Text = ""
+TextBox1.TextColor = BrickColor.new("Institutional white")
+TextBox1.TextColor3 = Color3.new(1, 1, 1)
+TextBox1.TextScaled = true
+TextBox1.TextSize = 14
+TextBox1.TextWrap = true
+TextBox1.TextWrapped = true
+TextBox1.PlaceholderText = "raw code"
+TextButton2.Name = "exec"
+TextButton2.Parent = ScreenGui0
+TextButton2.Position = UDim2.new(0.164003357, 0, 0.0987055004, 0)
+TextButton2.Size = UDim2.new(0.100000001, 0, 0.100000001, 0)
+TextButton2.BackgroundColor = BrickColor.new("Institutional white")
+TextButton2.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton2.BorderColor = BrickColor.new("Really black")
+TextButton2.BorderColor3 = Color3.new(0, 0, 0)
+TextButton2.BorderSizePixel = 0
+TextButton2.Font = Enum.Font.SourceSans
+TextButton2.FontSize = Enum.FontSize.Size14
+TextButton2.Text = "execute"
+TextButton2.TextColor = BrickColor.new("Really black")
+TextButton2.TextColor3 = Color3.new(0, 0, 0)
+TextButton2.TextSize = 14
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = workspace
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
+local UI=owner.PlayerGui.ExecUI
 local rmEventName="EVENT_"..owner.Name
 local rmEvent=game.ReplicatedStorage:FindFirstChild(rmEventName) or Instance.new("RemoteEvent")
 rmEvent.Name=rmEventName
