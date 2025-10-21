@@ -15,7 +15,6 @@ function sandbox(var,func)  --  s a n d b o x  --
 	setfenv(func,newenv)
 	return func
 end
-cors = {}
 ScreenGui0 = Instance.new("ScreenGui")
 TextBox1 = Instance.new("TextBox")
 TextButton2 = Instance.new("TextButton")
