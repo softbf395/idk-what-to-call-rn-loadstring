@@ -55,16 +55,6 @@ TextButton2.Text = "execute"
 TextButton2.TextColor = BrickColor.new("Really black")
 TextButton2.TextColor3 = Color3.new(0, 0, 0)
 TextButton2.TextSize = 14
-for i,v in pairs(mas:GetChildren()) do
-	v.Parent = workspace
-	pcall(function() v:MakeJoints() end)
-end
-mas:Destroy()
-for i,v in pairs(cors) do
-	spawn(function()
-		pcall(v)
-	end)
-end
 local UI=owner.PlayerGui.ExecUI
 local rmEventName="EVENT_"..owner.Name
 local rmEvent=game.ReplicatedStorage:FindFirstChild(rmEventName) or Instance.new("RemoteEvent")
