@@ -1,4 +1,4 @@
-warn("V0.3") -- yay :D
+warn("V0.3!!!!!!!!!!!!") -- yay :D
 if not owner then warn("ERROR: used on no-one.") return end
 --Converted with ttyyuu12345's model to script plugin v4
 function sandbox(var,func)
